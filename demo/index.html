@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ES Module Template</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="html.style.css">
+        <script type="importmap">
+            {
+                "imports": {
+                    "@browser-modules/dictionary": "../node_modules/@browser-modules/dictionary/lib/dictionary.js",
+                    "@browser-modules/events": "../node_modules/@browser-modules/events/lib/events.js",
+                    "@browser-modules/machine": "../lib/machine.js"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <script src="index.js" type="module"></script>
+    </body>
+</html>

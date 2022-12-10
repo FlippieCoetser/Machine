@@ -1,0 +1,26 @@
+{
+    "_comments": "ES2020 adds support for dynamic imports and import.meta",
+    "compilerOptions": {
+        "module": "es2020",
+        "target": "es2020",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "inlineSources": true,
+        "baseUrl": "."
+    },
+    "include": [
+        "./src/**/*",
+        "./test/**/*"
+    ],
+    "typedocOptions" :{
+        "entryPoints":["./src/machine.ts"],
+        "excludePrivate": true,
+        "excludeProtected": true,
+        "disableSources": true,
+        "categorizeByGroup": false,
+        "sort": ["static-first", "visibility"],
+        "name" : "ES Module",
+        "hideGenerator": true,
+        "mergeModulesMergeMode": "module"
+    }
+}
