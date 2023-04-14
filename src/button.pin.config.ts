@@ -69,20 +69,20 @@ export const Configuration:
     actions: {
         [Pin.Operation.HIDE]:   (
             machine: Machine<Pin.Attribute, Pin.States, Pin.Event>, 
-            state) => 
-                machine.emit(Pin.Event.ONHIDE, state),
+            state, ...args) => 
+                machine.emit(Pin.Event.ONHIDE, state, ...args),
         [Pin.Operation.SHOW]:   (
             machine: Machine<Pin.Attribute, Pin.States, Pin.Event>,
-            state) => 
-                machine.emit(Pin.Event.ONSHOW,state),
+            state, ...args) => 
+                machine.emit(Pin.Event.ONSHOW,state, ...args),
         [Pin.Operation.ON]:     (
             machine: Machine<Pin.Attribute, Pin.States, Pin.Event>,
-            state) => 
-                machine.emit(Pin.Event.ONON, state),
+            state, ...args) => 
+                machine.emit(Pin.Event.ONON, state, ...args),
         [Pin.Operation.OFF]:    (
             machine: Machine<Pin.Attribute, Pin.States, Pin.Event>,
-            state) => 
-                machine.emit(Pin.Event.ONOFF, state)
+            state, ...args) => 
+                machine.emit(Pin.Event.ONOFF, state, ...args)
     },
     gestures:[
         {

@@ -36,7 +36,7 @@ export type IValue<
     }
 
 export class Machine<
-    Attributes extends string,
+    Attributes extends string, 
     States extends string,
     Events extends string> extends Emitter {
         
@@ -110,11 +110,11 @@ export class Machine<
             .find(item => item[targetEvent])
             ?.[targetEvent]
     
-    private _executeActions = (event: Events) => {
+    private _executeActions = (event: Events,...args) => {
         const events = this._getEvents(event)
         events.actions?.forEach(item => 
                 this.configuration
-                    .actions[item](this, events.target))
+                    .actions[item](this, events.target, ...args))
         }
 
     private before = (event: Events) => {
@@ -145,12 +145,12 @@ export class Machine<
     get cache() {
         return this._cache
     }
-    public trigger = (event: Events) => { 
+    public trigger = (event: Events, ...args) => { 
         const isValid = this._isValidEvent(event)
         if(isValid) {
             this.before(event)
             this._updateCache(event);
-            this._executeActions(event);
+            this._executeActions(event, ...args);
             this._updateState(event);
             this.after(event)
         }

@@ -148,8 +148,10 @@ describe('given Machine imported', () => {
                         machine.on(Pin.Event.ONOFF, onoff)
                     })
                     describe('when trigger(Event.ONON)', () => {
+                        let parameter
                         beforeEach(() => {
-                            machine.trigger(Pin.Event.ONON)
+                            parameter = {value: 1}
+                            machine.trigger(Pin.Event.ONON, parameter)
                         })
                         it('then value[Attribute.STATE] should be State.ON', () => {
                             expect(machine.value[Pin.Attribute.STATE])
@@ -157,6 +159,7 @@ describe('given Machine imported', () => {
                         })
                         it('then Event.ONON listener should be called once',() => {
                             expect(onon).toHaveBeenCalledTimes(1)
+                            expect(onon).toHaveBeenCalledWith("on", parameter)
                         })
                         it('then Event.ONOFF listener should not be called', () => {
                             expect(onoff).not.toHaveBeenCalled()
