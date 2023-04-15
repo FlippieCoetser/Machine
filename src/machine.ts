@@ -153,6 +153,8 @@ export class Machine<
             this._executeActions(event, ...args);
             this._updateState(event);
             this.after(event)
+            return true
         }
+        return false
     }
 }
