@@ -1,6 +1,6 @@
 {
   "name": "@browser-modules/machine",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Button Web Component using ES6 modules",
   "browser": "lib/machine.js",
   "main": "lib/machine.js",
