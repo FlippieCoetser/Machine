@@ -70,7 +70,7 @@ export class Machine<
         this.events.find(item => item.event[event])
 
     private _targetAttribute = (event: Events) =>
-        this._target(event)!.attribute
+        this._target(event)?.attribute
     
     private _targetState = (event: Events) =>
         this._target(event)?.event[event].target
