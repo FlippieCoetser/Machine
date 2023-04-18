@@ -69,8 +69,8 @@ describe('given Machine imported', () => {
                         beforeEach(() => {
                             machine.trigger(Pin.Event.ONHIDE)
                         })
-                        it('then value[Attribute.VISIBLE] should be Visible.NO', () => {
-                            expect(machine.value[Pin.Attribute.VISIBLE])
+                        it('then state[Attribute.VISIBLE] should be Visible.NO', () => {
+                            expect(machine.state[Pin.Attribute.VISIBLE])
                             .toBe(Pin.Visible.NO)
                         })
                         it('and Event.ONHIDE listener should be called once', () => {
@@ -83,8 +83,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONSHOW)
                             })
-                            it('then value[Attribute.VISIBLE] should be Visible.YES', () => {
-                                expect(machine.value[Pin.Attribute.VISIBLE])
+                            it('then state[Attribute.VISIBLE] should be Visible.YES', () => {
+                                expect(machine.state[Pin.Attribute.VISIBLE])
                                 .toBe(Pin.Visible.YES)
                             })
                             it('then Event.ONHIDE listener should be called once', () => {
@@ -99,8 +99,8 @@ describe('given Machine imported', () => {
                         beforeEach(() => {
                             machine.trigger(Pin.Event.ONSHOW)
                         })
-                        it('then value[Attribute.VISIBLE] should be Visible.YES', () => {
-                            expect(machine.value[Pin.Attribute.VISIBLE])
+                        it('then state[Attribute.VISIBLE] should be Visible.YES', () => {
+                            expect(machine.state[Pin.Attribute.VISIBLE])
                             .toBe(Pin.Visible.YES)
                         })
                         it('and Event.ONHIDE listener should not be called', () => {
@@ -113,8 +113,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONHIDE)
                             })
-                            it('then value[Attribute.VISIBLE] should be Visible.NO', () => {
-                                expect(machine.value[Pin.Attribute.VISIBLE])
+                            it('then state[Attribute.VISIBLE] should be Visible.NO', () => {
+                                expect(machine.state[Pin.Attribute.VISIBLE])
                                 .toBe(Pin.Visible.NO)
                             })
                             it('and Event.ONHIDE listener should be called once', () => {
@@ -153,8 +153,8 @@ describe('given Machine imported', () => {
                             parameter = {value: 1}
                             machine.trigger(Pin.Event.ONON, parameter)
                         })
-                        it('then value[Attribute.STATE] should be State.ON', () => {
-                            expect(machine.value[Pin.Attribute.STATE])
+                        it('then state[Attribute.STATE] should be State.ON', () => {
+                            expect(machine.state[Pin.Attribute.STATE])
                             .toBe(Pin.State.ON)
                         })
                         it('then Event.ONON listener should be called once',() => {
@@ -168,8 +168,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONON)
                             })
-                            it('then value[Attribute.STATE] should be State.ON', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.ON', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.ON)
                             })
                             it('then Event.ONON listener should be called once',() => {
@@ -183,8 +183,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONOFF)
                             })
-                            it('then value[Attribute.STATE] should be State.OFF', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.OFF', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.OFF)
                             })
                             it('and Event.ONON listener should be called once', () => {
@@ -198,8 +198,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONTOGGLE)
                             })
-                            it('then value[Attribute.STATE] should be State.OFF', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.OFF', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.OFF)
                             })
                             it('and Event.ONON listeners should be called once', () => {
@@ -214,8 +214,8 @@ describe('given Machine imported', () => {
                         beforeEach(() => {
                             machine.trigger(Pin.Event.ONOFF)
                         })
-                        it('then value[Attribute.STATE] should be State.OFF', () => {
-                            expect(machine.value[Pin.Attribute.STATE])
+                        it('then state[Attribute.STATE] should be State.OFF', () => {
+                            expect(machine.state[Pin.Attribute.STATE])
                             .toBe(Pin.State.OFF)
                         })
                         it('and Event.ONON listener should not be called', () => {
@@ -228,8 +228,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONON)
                             })
-                            it('then value[Attribute.STATE] should be State.ON', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.ON', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.ON)
                             })
                             it('then Event.ONON listener should be called once', () => {
@@ -243,8 +243,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONOFF)
                             })
-                            it('then value[Attribute.STATE] should be State.OFF', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.OFF', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.OFF)
                             })
                             it('then Event.ONON listener should be not be called', () => {
@@ -259,8 +259,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONTOGGLE)
                             })
-                            it('then value[Attribute.STATE] should be State.ON', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.ON', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.ON)
                             })
                             it('then Event.ONON listener should be called once', () => {
@@ -275,8 +275,8 @@ describe('given Machine imported', () => {
                         beforeEach(() => {
                             machine.trigger(Pin.Event.ONTOGGLE)
                         })
-                        it('then value[Attribute.STATE] should be State.ON', () => {
-                            expect(machine.value[Pin.Attribute.STATE])
+                        it('then state[Attribute.STATE] should be State.ON', () => {
+                            expect(machine.state[Pin.Attribute.STATE])
                             .toBe(Pin.State.ON)
                         })
                         it('then Event.ONON listener should be called once',() => {
@@ -289,8 +289,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONON)
                             })
-                            it('then value[Attribute.STATE] should be State.ON', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.ON', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.ON)
                             })
                             it('and Event.ONON listener should be called once', () => {
@@ -304,8 +304,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONOFF)
                             })
-                            it('then value[Attribute.STATE] should be State.OFF', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.OFF', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.OFF)
                             })
                             it('and Event.ONON listener should be called once', () => {
@@ -319,8 +319,8 @@ describe('given Machine imported', () => {
                             beforeEach(() => {
                                 machine.trigger(Pin.Event.ONTOGGLE)
                             })
-                            it('then value[Attribute.STATE] should be State.OFF', () => {
-                                expect(machine.value[Pin.Attribute.STATE])
+                            it('then state[Attribute.STATE] should be State.OFF', () => {
+                                expect(machine.state[Pin.Attribute.STATE])
                                 .toBe(Pin.State.OFF)
                             })
                             it('and Event.ONON listener should be called once', () => {

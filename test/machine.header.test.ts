@@ -69,16 +69,16 @@ describe('given Machine imported', () => {
                     beforeEach(() => {
                         machine.trigger(Component.Event.ONHIDE)
                     })
-                    it('then value[Attribute.VISIBLE] should be Visible.NO', () => {
-                        expect(machine.value[Component.Attribute.VISIBLE])
+                    it('then state[Attribute.VISIBLE] should be Visible.NO', () => {
+                        expect(machine.state[Component.Attribute.VISIBLE])
                         .toBe(Component.Visible.NO)
                     })
                     describe('When send(Event.ONSHOW)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONSHOW)
                         })
-                        it('then value[Attribute.VISIBLE] should be Visible.YES', () => {
-                            expect(machine.value[Component.Attribute.VISIBLE])
+                        it('then state[Attribute.VISIBLE] should be Visible.YES', () => {
+                            expect(machine.state[Component.Attribute.VISIBLE])
                             .toBe(Component.Visible.YES)
                         })
                     })
@@ -113,16 +113,16 @@ describe('given Machine imported', () => {
                         event = Component.Event.ONPIN 
                         machine.trigger(Component.Event.ONPIN)
                     })
-                    it('then value[Attribute.STATE] should be State.PINNED', () => {
-                        expect(machine.value[Component.Attribute.STATE])
+                    it('then state[Attribute.STATE] should be State.PINNED', () => {
+                        expect(machine.state[Component.Attribute.STATE])
                         .toBe(Component.State.PINNED)
                     })
                     describe('when send(Event.ONUNPIN) ', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONUNPIN)
                         })
-                        it('then value[Attribute.STATE] should be State.UNPINNED', () => {
-                            expect(machine.value[Component.Attribute.STATE])
+                        it('then state[Attribute.STATE] should be State.UNPINNED', () => {
+                            expect(machine.state[Component.Attribute.STATE])
                             .toBe(Component.State.UNPINNED)
                         })  
                     })
@@ -144,31 +144,31 @@ describe('given Machine imported', () => {
                     beforeEach(() => {
                         machine.trigger(Component.Event.ONMINIMIZE)
                     })
-                    it('Then value[Header.Attribute.WINDOW] should be Header.Window.MINIMIZED', () => {
-                        expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.MINIMIZED)
+                    it('Then state[Header.Attribute.WINDOW] should be Header.Window.MINIMIZED', () => {
+                        expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.MINIMIZED)
                     })
                     describe('When send(Header.Event.ONMAXIMIZE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMAXIMIZE)
                         })
-                        it('Then value[Header.Attribute.WINDOW] should not be Header.Window.MAXIMIZED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).not.toBe(Component.Window.MAXIMIZED)
+                        it('Then state[Header.Attribute.WINDOW] should not be Header.Window.MAXIMIZED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).not.toBe(Component.Window.MAXIMIZED)
                         })
                     })
                     describe('When send(Header.Event.ONRESTORE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONRESTORE)
                         })
-                        it('Then value[Header.Attribute.WINDOW] should be Header.Window.NORMAL', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.NORMAL)
+                        it('Then state[Header.Attribute.WINDOW] should be Header.Window.NORMAL', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.NORMAL)
                         })
                     })
                     describe('When send(Header.Event.ONCLOSE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONCLOSE)
                         })
-                        it('Then value[Header.Attribute.WINDOW] should be Header.Window.CLOSED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
+                        it('Then state[Header.Attribute.WINDOW] should be Header.Window.CLOSED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
                         })
                     })
                 })
@@ -176,31 +176,31 @@ describe('given Machine imported', () => {
                     beforeEach(() => {
                         machine.trigger(Component.Event.ONMAXIMIZE)
                     })
-                    it('Then value[Header.Attribute.WINDOW] should be Header.Window.MAXIMIZED', () => {
-                        expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.MAXIMIZED)
+                    it('Then state[Header.Attribute.WINDOW] should be Header.Window.MAXIMIZED', () => {
+                        expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.MAXIMIZED)
                     })
                     describe('When send(Header.Event.ONMINIMIZE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMINIMIZE)
                         })
-                        it('Then value[Header.Attribute.WINDOW] should be Header.Window.MINIMIZED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.MINIMIZED)
+                        it('Then state[Header.Attribute.WINDOW] should be Header.Window.MINIMIZED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.MINIMIZED)
                         })
                     })
                     describe('When send(Header.Event.ONRESTORE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONRESTORE)
                         })
-                        it('Then value[Header.Attribute.WINDOW] should be Header.Window.NORMAL', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.NORMAL)
+                        it('Then state[Header.Attribute.WINDOW] should be Header.Window.NORMAL', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.NORMAL)
                         })
                     })
                     describe('When send(Header.Event.ONCLOSE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONCLOSE)
                         })
-                        it('Then value[Header.Attribute.WINDOW] should be Header.Window.CLOSED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
+                        it('Then state[Header.Attribute.WINDOW] should be Header.Window.CLOSED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
                         })
                     })
                 })
@@ -208,31 +208,31 @@ describe('given Machine imported', () => {
                     beforeEach(() => {
                         machine.trigger(Component.Event.ONRESTORE)
                     })
-                    it('Then value[Attribute.WINDOW] should be Window.NORMAL', () => {
-                        expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.NORMAL)
+                    it('Then state[Attribute.WINDOW] should be Window.NORMAL', () => {
+                        expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.NORMAL)
                     })
                     describe('When send(Event.ONMINIMIZE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMINIMIZE)
                         })
-                        it('Then value[Attribute.WINDOW] should be Window.MINIMIZED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.MINIMIZED)
+                        it('Then state[Attribute.WINDOW] should be Window.MINIMIZED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.MINIMIZED)
                         })
                     })
                     describe('When send(Event.ONMAXIMIZE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMAXIMIZE)
                         })
-                        it('Then value[Attribute.WINDOW] should be Window.MAXIMIZED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.MAXIMIZED)
+                        it('Then state[Attribute.WINDOW] should be Window.MAXIMIZED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.MAXIMIZED)
                         })
                     })
                     describe('When send(Event.ONCLOSE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONCLOSE)
                         })
-                        it('Then value[Attribute.WINDOW] should be Window.CLOSED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
+                        it('Then state[Attribute.WINDOW] should be Window.CLOSED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
                         })
                     })
                 })
@@ -240,31 +240,31 @@ describe('given Machine imported', () => {
                     beforeEach(() => {
                         machine.trigger(Component.Event.ONCLOSE)
                     })
-                    it('Then value[Attribute.WINDOW] should be Window.CLOSED', () => {
-                        expect(machine.value[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
+                    it('Then state[Attribute.WINDOW] should be Window.CLOSED', () => {
+                        expect(machine.state[Component.Attribute.WINDOW]).toBe(Component.Window.CLOSED)
                     })
                     describe('When send(Event.ONMINIMIZE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMINIMIZE)
                         })
-                        it('Then value[Attribute.WINDOW] should not be Window.MINIMIZED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).not.toBe(Component.Window.MINIMIZED)
+                        it('Then state[Attribute.WINDOW] should not be Window.MINIMIZED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).not.toBe(Component.Window.MINIMIZED)
                         })
                     })
                     describe('When send(Event.ONMAXIMIZE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMAXIMIZE)
                         })
-                        it('Then value[Attribute.WINDOW] should not be Window.MAXIMIZED', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).not.toBe(Component.Window.MAXIMIZED)
+                        it('Then state[Attribute.WINDOW] should not be Window.MAXIMIZED', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).not.toBe(Component.Window.MAXIMIZED)
                         })
                     })
                     describe('When send(Event.ONRESTORE)', () => {
                         beforeEach(() => {
                             machine.trigger(Component.Event.ONMAXIMIZE)
                         })
-                        it('Then value[Attribute.WINDOW] should not be Window.NORMAL', () => {
-                            expect(machine.value[Component.Attribute.WINDOW]).not.toBe(Component.Window.NORMAL)
+                        it('Then state[Attribute.WINDOW] should not be Window.NORMAL', () => {
+                            expect(machine.state[Component.Attribute.WINDOW]).not.toBe(Component.Window.NORMAL)
                         })
                     })
                 })

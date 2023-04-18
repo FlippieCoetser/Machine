@@ -29,17 +29,13 @@ export interface IConfiguration<
     gestures?: any
 }
 
-export type IValue<
-    Attributes extends string, 
-    States extends string> = {
-        [key in Attributes]: States;
-    }
+export type IValue<Attributes extends string, States extends string> = {[key in Attributes]: States;}
 
 export class Machine<
     Attributes extends string, 
     States extends string,
     Events extends string> extends Emitter {
-        
+
     private _default;
     private _state: IValue<Attributes, States>
     private _cache;
@@ -51,16 +47,11 @@ export class Machine<
         this.configuration = configuration
         this.initialize()
     }
-    
-    private initialize = () => {
-        this._loadState()
-        this._cacheState()
-    }
-    private _loadState = (): IValue<Attributes, States> => 
-        this._state = this._transformDefaults()
 
-    private _cacheState = () => { 
-        this._cache = this._transformDefaults()
+    private initialize = () => this._initializeState()
+
+    private _initializeState = () => {
+        this._state = this._transformDefaults()
     }
 
     private _isValidEvent = (event: Events): boolean => 
@@ -71,7 +62,7 @@ export class Machine<
 
     private _targetAttribute = (event: Events) =>
         this._target(event)?.attribute
-    
+
     private _targetState = (event: Events) =>
         this._target(event)?.event[event].target
 
@@ -79,43 +70,34 @@ export class Machine<
     private _mergeObjects = (previous, current) => 
         Object.assign(previous, current)
 
-    private _transformArrayToObject = (): IValue<Attributes, States> =>
+    private _transformDefaults = ()   => 
         this.defaults.reduce(this._mergeObjects,{})
-    
-    private _transformDefaults = ():  IValue<Attributes, States> => 
-        this._transformArrayToObject()
 
     private _updateState = (event: Events) => 
-        (this.value[this._targetAttribute(event)] = this._targetState(event))
+        this.state[this._targetAttribute(event)] = this._targetState(event)
 
-    private _updateCache = (event) => {
-        (this._cache[this._targetAttribute(event)] = this._targetState(event)) 
-    } 
-        
-    private _getEvent = (attribute) => ({
+    private _getEvents = (attribute) => ({
         attribute: attribute,
         event: this
             .configuration
             .states[attribute]
-            .states[this.value[attribute]]
+            .states[this.state[attribute]]
             .on})
-    
-    private _getEvents = (targetEvent) => 
+
+    private _getEventConfiguration = (event) => 
         this.attributes
             .map(attribute => 
                 this.configuration
                     .states[attribute]
-                    .states[this.value[attribute]]
+                    .states[this.state[attribute]]
                     .on)
-            .find(item => item[targetEvent])
-            ?.[targetEvent]
-    
-    private _executeActions = (event: Events,...args) => {
-        const events = this._getEvents(event)
-        events.actions?.forEach(item => 
-                this.configuration
-                    .actions[item](this, events.target, ...args))
-        }
+            .find(item => item[event])
+            ?.[event]
+
+    private _invokeActions = (actions, state, ...args) => 
+        actions.forEach(action => 
+            this.configuration
+                .actions[action](this, state, ...args))
 
     private before = (event: Events) => {
     }
@@ -126,32 +108,33 @@ export class Machine<
         return this._state
     }
 
-    get value():IValue<Attributes, States> {
-        return this._state
-    }
     get attributes() { 
         return Object.keys(this.configuration.states)
     }
     get events() {
         return this
-            .attributes.map(this._getEvent)
+            .attributes.map(this._getEvents)
     }
-    get defaults() {
+    get defaults(): any[] {
         return this
             .attributes
             .map((attribute) => 
-                ({[attribute]: this.configuration.states[attribute]?.initial}))
+                {
+                    let hasInitialState = this.configuration.states[attribute]?.initial
+                    if(hasInitialState) {  
+                        return {[attribute]: this.configuration.states[attribute]?.initial}
+                    }
+                })
     }
-    get cache() {
-        return this._cache
-    }
+
     public trigger = (event: Events, ...args) => { 
-        const isValid = this._isValidEvent(event)
-        if(isValid) {
+        const isValidEvent = this._isValidEvent(event)
+
+        if(isValidEvent) {
             this.before(event)
-            this._updateCache(event);
-            this._executeActions(event, ...args);
+            let {actions, target: state} = this._getEventConfiguration(event)
             this._updateState(event);
+            this._invokeActions(actions, state, ...args)
             this.after(event)
             return true
         }
