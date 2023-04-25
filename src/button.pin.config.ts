@@ -1,89 +1,86 @@
 /**
-* @module Pin
-*/
+ * @module Pin
+ */
 
-import { Machine, IConfiguration } from "./machine.js";
+import { Machine } from "./machine.js";
 
-import * as Pin from "./button.pin.metadata.js"
+import { Attribute, Attributes } from "./button.pin.metadata.js";
+import { Visible } from "./button.pin.metadata.js";
+import { State } from "./button.pin.metadata.js";
+import { Event, Events } from "./button.pin.metadata.js";
+import { Operation } from "./button.pin.metadata.js";
+import { Gesture } from "./button.pin.metadata.js";
 
-export * from "./button.pin.metadata.js"
+export * from "./button.pin.metadata.js";
 
-export const Configuration: 
-    IConfiguration<
-        Pin.Attribute, 
-        Pin.States, 
-        Pin.Event> = {
-    type:'parallel',
-    states :{
-        [Pin.Attribute.VISIBLE]:{
-            initial: Pin.Visible.YES,
-            states: {
-                [Pin.Visible.YES]:{
-                    on:{
-                        [Pin.Event.ONHIDE]: {
-                            target: Pin.Visible.NO,
-                            actions: [Pin.Operation.HIDE]
-                        }
-                    }
-                },
-                [Pin.Visible.NO]:{
-                    on:{
-                        [Pin.Event.ONSHOW]: {
-                            target: Pin.Visible.YES,
-                            actions: [Pin.Operation.SHOW]
-                        }
-                    }
-                }
-            }
+export const Configuration = {
+  type: "parallel",
+  states: {
+    [Attribute.VISIBLE]: {
+      initial: Visible.YES,
+      states: {
+        [Visible.YES]: {
+          on: {
+            [Event.ONHIDE]: {
+              target: Visible.NO,
+              actions: [Operation.HIDE],
+            },
+          },
         },
-        [Pin.Attribute.STATE]: {
-            initial: Pin.State.OFF,
-            states: {
-                [Pin.State.OFF]:{
-                    on: {
-                        [Pin.Event.ONON]: {
-                            target: Pin.State.ON,
-                            actions:[Pin.Operation.ON]
-                        },
-                        [Pin.Event.ONTOGGLE]: {
-                            target: Pin.State.ON,
-                            actions:[Pin.Operation.ON]
-                        }
-                    }
-                },
-                [Pin.State.ON]:{
-                    on: {
-                        [Pin.Event.ONOFF]: {
-                            target: Pin.State.OFF,
-                            actions: [Pin.Operation.OFF]
-                        },
-                        [Pin.Event.ONTOGGLE]: {
-                            target: Pin.State.OFF,
-                            actions: [Pin.Operation.OFF]
-                        }
-                    }
-                }
-            }
-        }
+        [Visible.NO]: {
+          on: {
+            [Event.ONSHOW]: {
+              target: Visible.YES,
+              actions: [Operation.SHOW],
+            },
+          },
+        },
+      },
     },
-    actions: {
-        [Pin.Operation.HIDE]:   (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>, state, ...args) => 
-                machine.emit(Pin.Event.ONHIDE, state, ...args),
-        [Pin.Operation.SHOW]:   (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>, state, ...args) => 
-                machine.emit(Pin.Event.ONSHOW,state, ...args),
-        [Pin.Operation.ON]:     (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>, state, ...args) => 
-                machine.emit(Pin.Event.ONON, state, ...args),
-        [Pin.Operation.OFF]:    (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>, state, ...args) => 
-                machine.emit(Pin.Event.ONOFF, state, ...args)
+    [Attribute.STATE]: {
+      initial: State.OFF,
+      states: {
+        [State.OFF]: {
+          on: {
+            [Event.ONON]: {
+              target: State.ON,
+              actions: [Operation.ON],
+            },
+            [Event.ONTOGGLE]: {
+              target: State.ON,
+              actions: [Operation.ON],
+            },
+          },
+        },
+        [State.ON]: {
+          on: {
+            [Event.ONOFF]: {
+              target: State.OFF,
+              actions: [Operation.OFF],
+            },
+            [Event.ONTOGGLE]: {
+              target: State.OFF,
+              actions: [Operation.OFF],
+            },
+          },
+        },
+      },
     },
-    gestures:[
-        {
-            event: Pin.Gesture.CLICK,
-            operation: Pin.Operation.TOGGLE
-        }
-    ]
-}
+  },
+  actions: {
+    [Operation.HIDE]: (machine: Machine<Attributes, Events>, state, ...args) =>
+      machine.emit(Event.ONHIDE, state, ...args),
+    [Operation.SHOW]: (machine: Machine<Attributes, Events>, state, ...args) =>
+      machine.emit(Event.ONSHOW, state, ...args),
+    [Operation.ON]: (machine: Machine<Attributes, Events>, state, ...args) =>
+      machine.emit(Event.ONON, state, ...args),
+    [Operation.OFF]: (machine: Machine<Attributes, Events>, state, ...args) =>
+      machine.emit(Event.ONOFF, state, ...args),
+  },
+  gestures: [
+    {
+      event: Gesture.CLICK,
+      operation: Operation.TOGGLE,
+    },
+  ],
+};
